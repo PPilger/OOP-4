@@ -39,22 +39,15 @@ public class Box implements Pict {
 
 		int scaledWidth = (int) Math.ceil(this.width);
 		int scaledHeight = (int) Math.ceil(this.height);
-		String result = "";
+		StringBuilder result = new StringBuilder();
 
 		// Nur Raender zeichnen
-		if (scaledWidth < 2 || scaledHeight < 2) {
+		if (scaledWidth < 2) {
+			scaledWidth = 2;
+		}
 
-			for (int i = 0; i < 4; i++) {
-
-				if (i == 2) {
-					result += "\n";
-				}
-
-				result += this.bound;
-			}
-
-			return result;
-
+		if (scaledHeight < 2) {
+			scaledHeight = 2;
 		}
 
 		// Hšhe durchiterieren
@@ -64,19 +57,19 @@ public class Box implements Pict {
 				// Rand zeichnen
 				if ((i == 0) || (i == (scaledHeight - 1)) || (j == 0)
 						|| (j == (scaledWidth - 1))) {
-					result += this.bound;
+					result.append(this.bound);
 				} else {
-					result += this.area;
+					result.append(this.area);
 				}
 			}
 
 			if (i < (scaledHeight - 1)) {
-				result += "\n";
+				result.append("\n");
 			}
 
 		}
 
-		return result;
+		return result.toString();
 
 	}
 

@@ -13,9 +13,11 @@ public class Test {
 
 		// Box testen
 		Box box1 = new Box(5, 3, '-', '#');
+		Box box2 = new Box(1, 4, '@', '?');
 		System.out.println(box1);
 		box1.scale(1.5);
 		System.out.println(box1);
+		System.out.println(box2);
 
 		// ClearBox testen
 		ClearBox cBox1 = new ClearBox(3, 3);

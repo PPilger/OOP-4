@@ -36,7 +36,7 @@ public class Box implements Pict {
 	}
 
 	public String toString() {
-		
+
 		int scaledWidth = (int) Math.ceil(this.width);
 		int scaledHeight = (int) Math.ceil(this.height);
 		String result = "";
@@ -59,24 +59,25 @@ public class Box implements Pict {
 
 		// Hšhe durchiterieren
 		for (int i = 0; i < scaledHeight; i++) {
-			//Breite durchiterieren
+			// Breite durchiterieren
 			for (int j = 0; j < scaledWidth; j++) {
-				//Rand zeichnen
-				if((i == 0) || (i == (scaledHeight-1)) || (j == 0) || (j == (scaledWidth-1))) {
+				// Rand zeichnen
+				if ((i == 0) || (i == (scaledHeight - 1)) || (j == 0)
+						|| (j == (scaledWidth - 1))) {
 					result += this.bound;
 				} else {
 					result += this.area;
 				}
 			}
 
-			if(i < (scaledHeight-1)) {
+			if (i < (scaledHeight - 1)) {
 				result += "\n";
 			}
 
 		}
 
 		return result;
-		
+
 	}
-	
+
 }

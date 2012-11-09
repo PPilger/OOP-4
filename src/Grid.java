@@ -74,6 +74,8 @@ public abstract class Grid<P> implements Pict {
 				builder.append(concatLines[line].toString());
 			}
 		}
+		
+		builder.deleteCharAt(builder.length()-1);
 
 		return builder.toString();
 	}

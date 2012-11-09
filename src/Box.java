@@ -42,12 +42,16 @@ public class Box implements Pict {
 		StringBuilder result = new StringBuilder();
 
 		// Nur Raender zeichnen
-		if (scaledWidth < 2) {
-			scaledWidth = 2;
-		}
-
-		if (scaledHeight < 2) {
-			scaledHeight = 2;
+		if(scaledWidth <= 2 || scaledHeight <= 2) {
+			for(int i = 0; i < scaledHeight; i++) {
+				for(int j = 0; j < scaledWidth; j++) {
+					result.append(this.bound);
+				}
+				if(i < (scaledHeight-1)) {
+					result.append("\n");
+				}
+			}
+			return result.toString();
 		}
 
 		// Hšhe durchiterieren

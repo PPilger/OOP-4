@@ -49,15 +49,6 @@ public class DarkBox implements Pict {
 		int scaledHeight = (int) Math.ceil(this.height);
 		StringBuilder result = new StringBuilder();
 
-		// Nur Raender zeichnen
-		if (scaledWidth < 2) {
-			scaledWidth = 2;
-		}
-
-		if (scaledHeight < 2) {
-			scaledHeight = 2;
-		}
-
 		// Hšhe durchiterieren
 		for (int i = 0; i < scaledHeight; i++) {
 			// Breite durchiterieren

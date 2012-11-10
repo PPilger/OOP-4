@@ -40,27 +40,14 @@ public class Box implements Pict {
 		int scaledWidth = (int) Math.ceil(this.width);
 		int scaledHeight = (int) Math.ceil(this.height);
 		StringBuilder result = new StringBuilder();
-
-		// Nur Raender zeichnen
-		if(scaledWidth <= 2 || scaledHeight <= 2) {
-			for(int i = 0; i < scaledHeight; i++) {
-				for(int j = 0; j < scaledWidth; j++) {
-					result.append(this.bound);
-				}
-				if(i < (scaledHeight-1)) {
-					result.append("\n");
-				}
-			}
-			return result.toString();
-		}
-
-		// Hšhe durchiterieren
+		
+		/* Hšhe durchiterieren
 		for (int i = 0; i < scaledHeight; i++) {
 			// Breite durchiterieren
 			for (int j = 0; j < scaledWidth; j++) {
 				// Rand zeichnen
-				if ((i == 0) || (i == (scaledHeight - 1)) || (j == 0)
-						|| (j == (scaledWidth - 1))) {
+				if (((i == 0) || (i == (scaledHeight - 1)) || (j == 0)
+						|| (j == (scaledWidth - 1))) && (scaledWidth <= 2 || scaledHeight <= 2)) {
 					result.append(this.bound);
 				} else {
 					result.append(this.area);
@@ -71,6 +58,39 @@ public class Box implements Pict {
 				result.append("\n");
 			}
 
+		}
+		*/
+		
+		//Kopfzeile
+		for(int i = 0; i < scaledWidth; i++) {
+			result.append(this.bound);
+		}
+		
+		result.append("\n");
+		
+		//Bei 2 beginnen, weil Kopf/Fu§zeile nicht behandelt wird
+		for(int i = 2; i < scaledHeight; i++) {
+			for(int j = 0; j < scaledWidth; j++) {
+				
+				if(j == 0) {
+					//Linker Rand
+					result.append(this.bound);
+				} else if(j == (scaledWidth-1) && scaledWidth > 1) {
+					//Rechter Rand
+					result.append(this.bound);
+				} else {
+					result.append(this.area);
+				}
+				
+			}
+			result.append("\n");
+		}
+		
+		//Fu§zeile
+		if(scaledHeight > 1) {
+			for(int i = 0; i < scaledWidth; i++) {
+				result.append(this.bound);
+			}
 		}
 
 		return result.toString();

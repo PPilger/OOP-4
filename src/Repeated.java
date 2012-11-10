@@ -1,4 +1,9 @@
-
+/**
+ * 
+ * @author Koegler Alexander
+ *
+ * @param <P>
+ */
 public class Repeated<P> extends Grid<P> {
 
 	private P[][] grid;
@@ -19,75 +24,35 @@ public class Repeated<P> extends Grid<P> {
 	
 	public String toString()
 	{
-		String ret ="";
-		StringBuilder s4 = new StringBuilder();
-		int max1 = 0, max2 = 0;
-		int c1 = 0, c2 = 0;
+		String s1 = super.toString();
 		if(scaleVal < 1)
-		{			
-			for(P[] n1 : grid)
-			{
-				for(P n2: n1)
-				{
-					s4.append(n2.toString().charAt(0));
-				}
-				s4.append('n');
-			}
-		}
-		else
 		{
-		for(P[] n1 : grid)
-		{
-			for(P n2: n1)
-			{
-				String[] s1 = n2.toString().split("\n");
-				if(s1.length*scaleVal > max1){
-					max1 = (int) ((int)s1.length*scaleVal);}
-				if(s1[0].length()*scaleVal > max2){
-					max2 = (int) ((int)s1[0].length()*scaleVal);
-				}
-			}
+			return new String(s1.substring(0,1));
 		}
 		
-		for(P[] n1 : grid)
+		if(scaleVal == 1)
 		{
-			c1++;
-			for(P n2 : n1)
-			{
-				c2++;
-				String[] s1 = n2.toString().split("\n");
-				for(String s2 : s1)
-				{
-					StringBuilder s3 = new StringBuilder(s2);
-					while(s2.length() < max1)
-					{
-						s3.append(' ');
-					}
-					s2 = s3.toString();
-				}
-				
-				int i = 0;
-				while(i < max2)
-				{
-					s4.append(s1[(i%(int)(s1.length*scaleVal))]);
-					s4.append('\t');
-					i++;
-				}
-			}
-			s4.append("\n\t");
+			return s1;
 		}
-		ret = s4.toString();}
-		String[] s5 = ret.split("\t");
-		ret = "";
-		s4 = new StringBuilder();
-		for(int i = 0; i < (c2-max2); i++)
+		StringBuilder s4 = new StringBuilder();
+		String[] s2 = s1.split("\n");
+		
+		for(int i = 0; i < s2.length; i++)
 		{
-			for(int j = 0; j < c2 && i+j < s5.length; j+=max2)
+			StringBuilder s3 = new StringBuilder(s2[i]);
+			int k = s2[i].length();
+			for(int j = 0; s3.length() < (int) (k * scaleVal);j++)
 			{
-				s4.append(s5[i+j]);
-			}
+				s3.append(s2[i].charAt(j % k));
+			}			
+			s2[i] = s3.toString();
 		}
-		ret = s4.toString();
-		return ret;
+		
+		for(int i = 0; i < (int)(s2.length * scaleVal); i++)
+		{
+			s4.append(s2[i % s2.length]);
+			s4.append('\n');
+		}
+		return s4.substring(0, s4.length()-1);
 	}
 }

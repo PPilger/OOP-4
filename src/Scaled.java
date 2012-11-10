@@ -1,6 +1,6 @@
 /**
  * 
- * @author VHD
+ * @author Koegler Alexander
  *
  * @param <P>
  */

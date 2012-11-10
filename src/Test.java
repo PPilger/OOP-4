@@ -29,7 +29,29 @@ public class Test {
 		FreeBox fb = new FreeBox(mg);
 		System.out.println(fb);
 		fb.scale(0.5);
+		System.out.println(fb);
 		fb.scale(2);
+		System.out.println(fb);
+		fb.scale(3);
+		System.out.println(fb);
+		fb.scale(2.75);
+		System.out.println(fb);
+		
+		//TU :P
+		Character[][] mg2 ={{'.','.','.','.','.','.','.','.','.'},
+							{'.','W','W','W','.','W','.','W','.'},
+							{'.','.','W','.','.','W','.','W','.'},
+							{'.','.','W','.','.','W','W','W','.'},
+							{'.','.','.','.','.','.','.','.','.'}};
+		fb = new FreeBox(mg2);
+		System.out.println(fb);
+		fb.scale(0.5);
+		System.out.println(fb);
+		fb.scale(2);
+		System.out.println(fb);
+		fb.scale(3);
+		System.out.println(fb);
+		fb.scale(2.75);
 		System.out.println(fb);
 	}
 }

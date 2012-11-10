@@ -23,5 +23,13 @@ public class Test {
 		ClearBox cBox1 = new ClearBox(3, 3);
 		System.out.println(cBox1);
 		System.out.println(cBox1.getRatio());
+		
+		//FreeBox testen
+		Character[][] mg = {{'a','b','c'},{'d','e','f'}};
+		FreeBox fb = new FreeBox(mg);
+		System.out.println(fb);
+		fb.scale(0.5);
+		fb.scale(2);
+		System.out.println(fb);
 	}
 }

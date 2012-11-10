@@ -1,59 +1,107 @@
 import java.util.Arrays;
 
+/**
+ * Ein Bild, dass aus einem Grid mehrerer Elemente besteht.
+ * 
+ * @author Peter Pilgerstorfer
+ * 
+ * @param <P>
+ *            Typ der Elemente
+ */
 public abstract class Grid<P> implements Pict {
 	private P[][] grid;
 
+	/**
+	 * Erstellt ein neues Grid aus dem angegebenen Array.
+	 * 
+	 * Vorbedingung: grid ist rechteckig (alle Zeilen sind gleich lang)
+	 * 
+	 * @param grid
+	 */
 	public Grid(P[][] grid) {
 		this.grid = grid;
 	}
 
+	/**
+	 * Gibt das Grid aus. Dabei wird die toString-Darstellung der Elemente
+	 * verwendet. Alle Elemente werden dafuer (mit Leerzeichen) auf die selbe
+	 * Groesse gebracht.
+	 */
 	public String toString() {
+		// baut den Ergebnisstring
 		StringBuilder builder = new StringBuilder();
+
+		// Zeilen und Spaltenanzahl des Grids
 		int rows = grid.length;
 		int cols = grid[0].length;
+
+		// Die Zeilen der toString-Ausgaben der Grid-Elemente
 		String[][][] rendered = new String[rows][cols][];
+
+		// Die erweiterten Elemente (mit Leerzeilen und Leerzeichen aufgefuellt)
 		String[][][] extended = new String[rows][cols][];
+
+		// Hoehe des hoechsten Elements
 		int height = 0;
+
+		// Breite des breitesten Elements
 		int width = 0;
 
+		// Elemente rendern und Groesse der Ausgabeelemente berechnen
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				rendered[i][j] = grid[i][j].toString().split("\n");
-				String[] lines = rendered[i][j];
-				
+				String[] lines = grid[i][j].toString().split("\n");
+
 				if (lines.length > height) {
 					height = lines.length;
 				}
-				
-				for(int line = 0; line < lines.length; line++) {
+
+				for (int line = 0; line < lines.length; line++) {
 					if (lines[line].length() > width) {
-						width = lines[0].length();
+						width = lines[line].length();
 					}
 				}
+
+				rendered[i][j] = lines;
 			}
 		}
 
-		char[] emptyLine = new char[width];
-		Arrays.fill(emptyLine, ' ');
-		String empty = new String(emptyLine);
+		// Zusicherung: height enthaelt die Hoehe des hoechsten Elements
+		// Zusicherung: width enthaelt die Breite des breitesten Elements
+		// Zusicherung: rendered enthaelt die (zeilenweise) toString-Darstellung
+		// aller Elemente
 
+		String empty;
+		{
+			char[] emptyLine = new char[width];
+			Arrays.fill(emptyLine, ' ');
+
+			empty = new String(emptyLine);
+		}
+
+		// Vergroesserung zu kleiner Elemente
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				String[] orig = rendered[i][j];
-				String[] ext = new String[height];
+				String[] orig = rendered[i][j]; // original
+				String[] ext = new String[height]; // vergroessert
 
+				// Vergroesserung zu kurzer Zeilen
 				for (int line = 0; line < orig.length; line++) {
-					StringBuilder sb = new StringBuilder();
-					sb.append(orig[line]);
-					sb.append(empty.substring(orig[line].length()));
-					ext[line] = sb.toString();
+					ext[line] = orig[line]
+							+ empty.substring(orig[line].length());
 				}
 
+				// Anhaengen leerer Zeilen, um auf die volle Zeilenanzahl zu
+				// kommen
 				Arrays.fill(ext, orig.length, height, empty);
+
+				// Zusicherung: ext hat height Zeilen mit je width Zeichen
+
 				extended[i][j] = ext;
 			}
 		}
 
+		// Bauen des Ausgabestrings anhand der vergroesserten Elemente
 		for (int i = 0; i < rows; i++) {
 			StringBuilder[] concatLines = new StringBuilder[height];
 
@@ -61,21 +109,26 @@ public abstract class Grid<P> implements Pict {
 				concatLines[line] = new StringBuilder();
 			}
 
+			// Zeilenweise Verkettung der Ausgabeelemente
 			for (int j = 0; j < cols; j++) {
-				String[] currentLines = extended[i][j];
-
 				for (int line = 0; line < height; line++) {
-					concatLines[line].append(currentLines[line]);
+					concatLines[line].append(extended[i][j][line]);
 				}
 			}
 
+			// Zusicherung: in concatLines stehen die Ausgabezeilen der
+			// aktuellen
+			// Grid-Zeile
+
+			// Verkettung der Zeilen
 			for (int line = 0; line < height; line++) {
-				concatLines[line].append('\n');
 				builder.append(concatLines[line].toString());
+				builder.append('\n');
 			}
 		}
-		
-		builder.deleteCharAt(builder.length()-1);
+
+		// Den letzten Zeilenumbruch entfernen
+		builder.deleteCharAt(builder.length() - 1);
 
 		return builder.toString();
 	}

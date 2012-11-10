@@ -18,7 +18,7 @@ public class Box implements Pict {
 	 * @param height
 	 *            Die Hoehe der Box
 	 * @param area
-	 *            Das Zeichen mit dem der Inhalt der Box befüllt werden soll
+	 *            Das Zeichen mit dem der Inhalt der Box befuellt werden soll
 	 * @param bound
 	 *            Das Zeichen mit dem der Rand der Box gezeichnet werden soll
 	 */
@@ -42,7 +42,7 @@ public class Box implements Pict {
 		StringBuilder result = new StringBuilder();
 
 		/*
-		 * Höhe durchiterieren for (int i = 0; i < scaledHeight; i++) { //
+		 * Hoehe durchiterieren for (int i = 0; i < scaledHeight; i++) { //
 		 * Breite durchiterieren for (int j = 0; j < scaledWidth; j++) { // Rand
 		 * zeichnen if (((i == 0) || (i == (scaledHeight - 1)) || (j == 0) || (j
 		 * == (scaledWidth - 1))) && (scaledWidth <= 2 || scaledHeight <= 2)) {

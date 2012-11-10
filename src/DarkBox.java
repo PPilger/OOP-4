@@ -26,7 +26,7 @@ public class DarkBox implements Pict {
 	}
 
 	/**
-	 * NOTE: Aendert das aktuelle Zeichen der DarkBox auf das neu gewählte.
+	 * NOTE: Aendert das aktuelle Zeichen der DarkBox auf das neu gewaehlte.
 	 * 
 	 * Vorbedingung: Das Zeichen c darf nicht ein Leerzeichen sein.
 	 * 
@@ -49,7 +49,7 @@ public class DarkBox implements Pict {
 		int scaledHeight = (int) Math.ceil(this.height);
 		StringBuilder result = new StringBuilder();
 
-		// Höhe durchiterieren
+		// Hoehe durchiterieren
 		for (int i = 0; i < scaledHeight; i++) {
 			// Breite durchiterieren
 			for (int j = 0; j < scaledWidth; j++) {

@@ -41,18 +41,6 @@ public class Box implements Pict {
 		int scaledHeight = (int) Math.ceil(this.height);
 		StringBuilder result = new StringBuilder();
 
-		/*
-		 * Hoehe durchiterieren for (int i = 0; i < scaledHeight; i++) { //
-		 * Breite durchiterieren for (int j = 0; j < scaledWidth; j++) { // Rand
-		 * zeichnen if (((i == 0) || (i == (scaledHeight - 1)) || (j == 0) || (j
-		 * == (scaledWidth - 1))) && (scaledWidth <= 2 || scaledHeight <= 2)) {
-		 * result.append(this.bound); } else { result.append(this.area); } }
-		 * 
-		 * if (i < (scaledHeight - 1)) { result.append("\n"); }
-		 * 
-		 * }
-		 */
-
 		// Kopfzeile
 		for (int i = 0; i < scaledWidth; i++) {
 			result.append(this.bound);

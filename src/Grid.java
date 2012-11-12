@@ -47,6 +47,9 @@ public abstract class Grid<P> implements Pict {
 		// Breite des breitesten Elements
 		int width = 0;
 
+		// Eine Zeile voller Leerzeichen mit der Breite der Grid-Zellen
+		String empty;
+
 		// Elemente rendern und Groesse der Ausgabeelemente berechnen
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
@@ -71,7 +74,8 @@ public abstract class Grid<P> implements Pict {
 		// Zusicherung: rendered enthaelt die (zeilenweise) toString-Darstellung
 		// aller Elemente
 
-		String empty;
+		
+		// Setzen des empty-Strings auf einen String der Breite width
 		{
 			char[] emptyLine = new char[width];
 			Arrays.fill(emptyLine, ' ');

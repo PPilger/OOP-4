@@ -11,15 +11,15 @@ public class DarkBox implements Pict {
 	/**
 	 * Vorbedingung: Das Zeichen darf nicht ein Leerzeichen sein.
 	 * 
-	 * @param zeichen
-	 *            Das Zeichen, welches den Rand sowie das Innere der Box
-	 *            darstellt
 	 * @param width
 	 *            Die Breite der Box
 	 * @param height
 	 *            Die Hoehe der Box
+	 * @param zeichen
+	 *            Das Zeichen, welches den Rand sowie das Innere der Box
+	 *            darstellt
 	 */
-	public DarkBox(char zeichen, int width, int height) {
+	public DarkBox(int width, int height, char zeichen) {
 		this.zeichen = zeichen;
 		this.width = width;
 		this.height = height;

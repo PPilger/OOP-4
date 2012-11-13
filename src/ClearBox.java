@@ -14,9 +14,6 @@ public class ClearBox extends Box {
 	 * und bleiben danach unveraendert.
 	 * => Einschränkung: Bei der ClearBox ist das Zeichen area immer ' ' und bound immer *
 	 * 
-	 * Vorbedingung: "area"&"bound" duerfen nur druckbare Zeichen sein
-	 * Vorbedingung: "bound" darf kein Leerzeichen sein
-	 * 
 	 * @param width
 	 *            Die Breite der Box
 	 * @param height

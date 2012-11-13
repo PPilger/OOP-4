@@ -37,6 +37,8 @@ public class Box implements Pict {
 	}
 	
 	/** 
+	 * @Override
+	 * 
 	 * Note: Returniert das Bild als String
 	 * 
 	 * Vorbedingung: 0.1 <= factor <= 10.0
@@ -69,7 +71,7 @@ public class Box implements Pict {
 
 		result.append("\n");
 
-		// Bei 2 beginnen, weil Kopf/Fu§zeile nicht behandelt wird
+		// Bei 2 beginnen, weil Kopf/Fuszzeile nicht behandelt wird
 		for (int i = 2; i < scaledHeight; i++) {
 			// Linker Rand
 			result.append(this.bound);

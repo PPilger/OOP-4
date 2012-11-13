@@ -1,4 +1,5 @@
 /**
+ * Untertyp vom Obertyp "Pict"
  * 
  * @author Christian Kletzander
  */
@@ -9,7 +10,7 @@ public class DarkBox implements Pict {
 	private double height;
 
 	/**
-	 * Vorbedingung: Das Zeichen darf nicht ein Leerzeichen sein.
+	 * Vorbedingung: Das Zeichen darf kein Leerzeichen sein.
 	 * 
 	 * @param width
 	 *            Die Breite der Box
@@ -37,12 +38,28 @@ public class DarkBox implements Pict {
 		this.zeichen = c;
 	}
 
-	@Override
+	/** 
+	 * @Override
+	 * 
+	 * Note: Returniert das Bild als String
+	 * 
+	 * Vorbedingung: 0.1 <= factor <= 10.0
+	 * 
+	 * @factor
+	 * 		Ein Faktor zum skalieren des Bildes
+	 */
 	public void scale(double factor) {
 		this.width *= factor;
 		this.height *= factor;
 	}
 
+	/**
+	 * @Override
+	 * 
+	 * Note: Returnierter String repraesentiert ein 2D-Bild
+	 * 
+	 * Nachbedingung: Besteht aus druckbaren Zeichen
+	 */
 	public String toString() {
 
 		int scaledWidth = (int) Math.ceil(this.width);

@@ -13,12 +13,11 @@ public class Test {
 		System.out.println("--- DarkBox (Box2) ---");
 		System.out.println(dBox2);
 
-		//Ersetzungsprinzip - Erfolgreich
-		Pict dBox3 = new DarkBox(3,3,'*');
+		// Ersetzungsprinzip - Erfolgreich
+		Pict dBox3 = new DarkBox(3, 3, '*');
 		System.out.println("--- DarkBox (Box3) - Ersetzungsprinzip ---");
 		System.out.println(dBox3);
-		
-		
+
 		// Box testen
 		Box box1 = new Box(5, 3, '-', '#');
 		Box box2 = new Box(1, 4, '@', '?');
@@ -34,9 +33,9 @@ public class Test {
 		ClearBox cBox1 = new ClearBox(3, 3);
 		System.out.println(cBox1);
 		System.out.println(cBox1.getRatio());
-		
-		//FreeBox testen
-		Character[][] mg = {{'a','b','c'},{'d','e','f'}};
+
+		// FreeBox testen
+		Character[][] mg = { { 'a', 'b', 'c' }, { 'd', 'e', 'f' } };
 		FreeBox fb = new FreeBox(mg);
 		System.out.println(fb);
 		fb.scale(0.5);
@@ -47,13 +46,13 @@ public class Test {
 		System.out.println(fb);
 		fb.scale(2.75);
 		System.out.println(fb);
-		
-		//TU :P
-		Character[][] mg2 ={{'.','.','.','.','.','.','.','.','.'},
-							{'.','W','W','W','.','W','.','W','.'},
-							{'.','.','W','.','.','W','.','W','.'},
-							{'.','.','W','.','.','W','W','W','.'},
-							{'.','.','.','.','.','.','.','.','.'}};
+
+		// TU :P
+		Character[][] mg2 = { { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
+				{ '.', 'W', 'W', 'W', '.', 'W', '.', 'W', '.' },
+				{ '.', '.', 'W', '.', '.', 'W', '.', 'W', '.' },
+				{ '.', '.', 'W', '.', '.', 'W', 'W', 'W', '.' },
+				{ '.', '.', '.', '.', '.', '.', '.', '.', '.' } };
 		fb = new FreeBox(mg2);
 		System.out.println(fb);
 		fb.scale(0.5);
@@ -64,5 +63,29 @@ public class Test {
 		System.out.println(fb);
 		fb.scale(2.75);
 		System.out.println(fb);
+
+		// Repeated, Scale
+		Pict p00 = new Box(5, 3, '-', '#');
+		Pict p01 = new ClearBox(5, 4);
+		Pict p02 = new Box(3, 2, '-', '#');
+		Pict p10 = new Box(3, 5, '\\', '/');
+		Pict p11 = new DarkBox(2, 3, 'O');
+		Pict p12 = new ClearBox(4, 4);
+
+		Pict[][] picts = { { p00, p01, p02 }, { p10, p11, p12 } };
+
+		Grid<Pict> grid = new Repeated<Pict>(picts);
+		System.out.println(grid);
+		grid.scale(0.5);
+		System.out.println(grid);
+		grid.scale(2.75);
+		System.out.println(grid);
+
+		grid = new Scaled<Pict>(picts);
+		System.out.println(grid);
+		grid.scale(0.5);
+		System.out.println(grid);
+		grid.scale(2.75);
+		System.out.println(grid);
 	}
 }

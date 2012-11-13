@@ -1,58 +1,82 @@
 /**
  * 
  * @author Koegler Alexander
- *
+ * 
  * @param <P>
+ *            Typ der Elemente
  */
 public class Repeated<P> extends Grid<P> {
 
-	private P[][] grid;
+	// Invariante: 0.1 <= factor <= 10.0
 	private double scaleVal = 1;
-	
-	@SuppressWarnings("unchecked")
+
+	/**
+	 * Erstellt ein neues Repeated Objekt aus dem angegebenen Array.
+	 * 
+	 * Vorbedingung: grid ist rechteckig (alle Zeilen sind gleich lang)
+	 * Vorbedingung: die toString Darstellung der Elemente in grid enthaelt
+	 * ausschliesslich druckbare Zeichen (Zeilenumbrueche ausgenommen)
+	 */
 	public Repeated(P[][] grid) {
 		super(grid);
-		this.grid = grid;
 	}
 
+	/**
+	 * Veraendert die Groesse des Bildes. Wenn factor <= 1, wird der links obere
+	 * Teil des Bildes mit toString zurueckgegeben. Wenn factor > 1, wird das
+	 * Bild wiederholt aneinandergereiht um auf die gewuenschte Groesse zu
+	 * kommen.
+	 * 
+	 * Vorbedingung: 0.1 <= factor <= 10.0
+	 */
 	@Override
 	public void scale(double factor) {
-		// TODO Auto-generated method stub
 		scaleVal = factor;
-		
 	}
-	
-	public String toString()
-	{
-		String s1 = super.toString();
-		if(scaleVal < 1)
-		{
-			return new String(s1.substring(0,1));
+
+	/**
+	 * Gibt das Grid aus. Dabei wird die toString-Darstellung der Elemente
+	 * verwendet. Alle Elemente werden dafuer (mit Leerzeichen) auf die selbe
+	 * Groesse gebracht.
+	 * 
+	 * Wenn das Bild um einen Faktor factor skaliert wurde gilt folgendes:
+	 * 
+	 * Wenn factor < 1, wird der links obere Teil des Bildes mit toString
+	 * zurueckgegeben. Wenn factor > 1, wird das Bild wiederholt
+	 * aneinandergereiht um auf die gewuenschte Groesse zu kommen.
+	 * 
+	 * Nachbedingung: das zurueckgegebene Bild besteht nur aus druckbaren
+	 * Zeichen.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		String full = super.toString();
+		String[] lines = full.split("\n");
+
+		if (lines.length < 1 || lines[0].length() < 1) {
+			return "";
 		}
-		
-		if(scaleVal == 1)
-		{
-			return s1;
+
+		int lineLength = lines[0].length();
+
+		int height = (int) Math.ceil(lines.length * scaleVal);
+		int width = (int) Math.ceil(lineLength * scaleVal);
+
+		System.out.println(height + "/" + width + ", " + lines.length + "/"
+				+ lineLength);
+
+		for (int i = 0; i < Math.min(height, lines.length); i++) {
+			int w = width;
+
+			for (; w > lineLength; w -= lineLength) {
+				builder.append(lines[i]);
+			}
+
+			builder.append(lines[i].substring(0, w));
+			builder.append('\n');
 		}
-		StringBuilder s4 = new StringBuilder();
-		String[] s2 = s1.split("\n");
-		
-		for(int i = 0; i < s2.length; i++)
-		{
-			StringBuilder s3 = new StringBuilder(s2[i]);
-			int k = s2[i].length();
-			for(int j = 0; s3.length() < (int) (k * scaleVal);j++)
-			{
-				s3.append(s2[i].charAt(j % k));
-			}			
-			s2[i] = s3.toString();
-		}
-		
-		for(int i = 0; i < (int)(s2.length * scaleVal); i++)
-		{
-			s4.append(s2[i % s2.length]);
-			s4.append('\n');
-		}
-		return s4.substring(0, s4.length()-1);
+
+		return builder.substring(0, builder.length() - 1);
 	}
 }

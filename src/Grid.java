@@ -9,14 +9,17 @@ import java.util.Arrays;
  *            Typ der Elemente
  */
 public abstract class Grid<P> implements Pict {
+	// Invariante: grid ist rechteckig (alle Zeilen sind gleich lang)
+	// Invariante: die toString Darstellung der Elemente in grid enthaelt
+	// ausschliesslich druckbare Zeichen (Zeilenumbrueche ausgenommen)
 	private P[][] grid;
 
 	/**
 	 * Erstellt ein neues Grid aus dem angegebenen Array.
 	 * 
 	 * Vorbedingung: grid ist rechteckig (alle Zeilen sind gleich lang)
-	 * 
-	 * @param grid
+	 * Vorbedingung: die toString Darstellung der Elemente in grid enthaelt
+	 * ausschliesslich druckbare Zeichen (Zeilenumbrueche ausgenommen)
 	 */
 	public Grid(P[][] grid) {
 		this.grid = grid;
@@ -26,10 +29,18 @@ public abstract class Grid<P> implements Pict {
 	 * Gibt das Grid aus. Dabei wird die toString-Darstellung der Elemente
 	 * verwendet. Alle Elemente werden dafuer (mit Leerzeichen) auf die selbe
 	 * Groesse gebracht.
+	 * 
+	 * Nachbedingung: das zurueckgegebene Bild besteht nur aus druckbaren
+	 * Zeichen.
 	 */
+	@Override
 	public String toString() {
 		// baut den Ergebnisstring
 		StringBuilder builder = new StringBuilder();
+
+		if (grid.length < 1 || grid[0].length < 1) {
+			return "";
+		}
 
 		// Zeilen und Spaltenanzahl des Grids
 		int rows = grid.length;
@@ -74,7 +85,6 @@ public abstract class Grid<P> implements Pict {
 		// Zusicherung: rendered enthaelt die (zeilenweise) toString-Darstellung
 		// aller Elemente
 
-		
 		// Setzen des empty-Strings auf einen String der Breite width
 		{
 			char[] emptyLine = new char[width];

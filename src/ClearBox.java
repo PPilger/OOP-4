@@ -19,7 +19,7 @@ public class ClearBox extends Box {
 	 * @param height
 	 *            Die Hoehe der Box
 	 */
-	public ClearBox(int width, int height) {
+	public ClearBox(double width, double height) {
 		super(width, height, ' ', '*');
 		this.ratio = width / height;
 	}

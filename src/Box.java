@@ -1,6 +1,8 @@
 /**
  * Untertyp vom Obertyp "Pict"
  * 
+ * Invariante: "area" & "bound" koennen - nachdem sie gesetzt wurden - nicht mehr veraendert werden.
+ * 
  * @author Christian Kletzander
  * 
  */
@@ -10,7 +12,7 @@ public class Box implements Pict {
 	private double height;
 	//Invariante: area darf nur ein druckbares Zeichen sein oder ein Leerzeichen
 	private char area;
-	//Invariante: bound darf nur ein druckbares Zeichen sein und aber auch kein Leerzeichen
+	//Invariante: bound darf nur ein druckbares Zeichen sein und aber kein Leerzeichen
 	private char bound;
 
 	/**

@@ -1,4 +1,9 @@
 /**
+ * Untertyp vom Obertyp "Pict", weil
+ * --> Jede Methode aus Pict kann in Box aufgerufen werden.
+ * --> Jede Methodensignatur/Jeder MethodenrŸckgabewert ist ident mit dem Obertyp
+ * 
+ * => Ersetzbarkeitsprinzip gegeben
  * 
  * @author Christian Kletzander
  * 
@@ -29,12 +34,15 @@ public class Box implements Pict {
 		this.bound = bound;
 	}
 
-	@Override
+	// returns the picture as String
+	// Vorbedingung: 0.1 <= factor <= 10.0; resize the picture
 	public void scale(double factor) {
 		this.width *= factor;
 		this.height *= factor;
 	}
 
+	// instances represent 2-dimensional pictures
+	// consisting of printable characters
 	public String toString() {
 
 		int scaledWidth = (int) Math.ceil(this.width);

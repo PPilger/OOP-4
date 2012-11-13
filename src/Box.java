@@ -1,9 +1,5 @@
 /**
- * Untertyp vom Obertyp "Pict", weil
- * --> Jede Methode aus Pict kann in Box aufgerufen werden.
- * --> Jede Methodensignatur/Jeder MethodenrŸckgabewert ist ident mit dem Obertyp
- * 
- * => Ersetzbarkeitsprinzip gegeben
+ * Untertyp vom Obertyp "Pict"
  * 
  * @author Christian Kletzander
  * 
@@ -12,10 +8,16 @@ public class Box implements Pict {
 
 	private double width;
 	private double height;
+	//Invariante: area darf nur ein druckbares Zeichen sein oder ein Leerzeichen
 	private char area;
+	//Invariante: bound darf nur ein druckbares Zeichen sein und aber auch kein Leerzeichen
 	private char bound;
 
 	/**
+	 * Die beiden zu verwendenden Zeichen (area,bound) werden im Konstruktor gesetzt
+	 * und bleiben danach unveraendert.
+	 * 
+	 * Vorbedingung: "area"&"bound" duerfen nur druckbare Zeichen sein
 	 * Vorbedingung: "bound" darf kein Leerzeichen sein
 	 * 
 	 * @param width
@@ -33,16 +35,27 @@ public class Box implements Pict {
 		this.area = area;
 		this.bound = bound;
 	}
-
-	// returns the picture as String
-	// Vorbedingung: 0.1 <= factor <= 10.0; resize the picture
+	
+	/** 
+	 * Note: Returniert das Bild als String
+	 * 
+	 * Vorbedingung: 0.1 <= factor <= 10.0
+	 * 
+	 * @factor
+	 * 		Ein Faktor zum skalieren des Bildes
+	 */
 	public void scale(double factor) {
 		this.width *= factor;
 		this.height *= factor;
 	}
 
-	// instances represent 2-dimensional pictures
-	// consisting of printable characters
+	/**
+	 * @Override
+	 * 
+	 * Note: Returnierter String repraesentiert ein 2D-Bild
+	 * 
+	 * Nachbedingung: Besteht aus druckbaren Zeichen
+	 */
 	public String toString() {
 
 		int scaledWidth = (int) Math.ceil(this.width);

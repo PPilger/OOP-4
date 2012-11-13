@@ -131,8 +131,7 @@ public abstract class Grid<P> implements Pict {
 			}
 
 			// Zusicherung: in concatLines stehen die Ausgabezeilen der
-			// aktuellen
-			// Grid-Zeile
+			// aktuellen Grid-Zeile
 
 			// Verkettung der Zeilen
 			for (int line = 0; line < height; line++) {

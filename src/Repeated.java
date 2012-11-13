@@ -63,9 +63,6 @@ public class Repeated<P> extends Grid<P> {
 		int height = (int) Math.ceil(lines.length * scaleVal);
 		int width = (int) Math.ceil(lineLength * scaleVal);
 
-		System.out.println(height + "/" + width + ", " + lines.length + "/"
-				+ lineLength);
-
 		for (int i = 0; i < Math.min(height, lines.length); i++) {
 			int w = width;
 

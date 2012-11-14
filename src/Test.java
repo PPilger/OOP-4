@@ -1,3 +1,37 @@
+//Aequivalenz:
+//
+//FreeBox ist aequivalent zu Repeated<P>, da alle Methodensignaturen sowie Vor-/Nachbedingungen und Invarianten gleich sind.
+//
+//Untertyp von ... Beziehungen:
+//
+//ClearBox ist Untertyp von Box, da die Invarianten (Rand ist immer '*', Inhalt ist immer ' ') strenger sind. Die geerbten Methoden haben die selbe Funktionalitaet und sind daher aequivalent.
+//
+//P (P extends Pict) ist Untertyp von Scaled<P>, da
+//- die Methodensignaturen gleich sind
+//- die Vorbedingungen (factor zwischen 0.1 und 10) gleich sind.
+//- die Nachbedingung der Methode toString (das Ausgabeformat) staerker sind (es wird nur ein 1x1 Grid ausgegeben). Das Skalierverhalten ist vom Typparameter (P) abhaengig und damit aequivalent.
+//- die Invarianten von Scaled<P> in P eben falls gelten (das Grid ist rechteckig da 1x1, enthaelt ausschliesslich druckbare Zeichen).
+//Diese Beziehung laesst sich in Java nicht darstellen, da Scaled auf die Methoden von P zugreift, was in einer endlos-Rekursion enden wuerde.
+//Fuer ClearBox - Scaled<Box> sowie Repeated<Char> - Scaled<FreeBox> (und umgekehrt) gelten die genannten Regeln ebenfalls (aufgrund der Untertypbeziehungen)!
+//
+//Keine Untertypbeziehung:
+//
+//Box, ClearBox mit DarkBox: DarkBox ist veraenderbar und Darkbox kann keinen Rand darstellen (anderes Ausgabeformat).
+//
+//Box, ClearBox mit FreeBox: Unterschiedliche Skalierungseigenschaften.
+//
+//Box, ClearBox, Scaled<Q> mit Repeated<P>: Unterschiedliche Skalierungseigenschaften.
+//
+//Box, ClearBox mit Scaled<P> (P ohne Box, ClearBox): Bei einem 1x1 Grid gibt es keine Untertypbeziehung, da mit P keine Untertypbeziehung besteht. Sonst sind die Skalierungseigenschaften unterschiedlich.
+//
+//DarkBox mit FreeBox: Die Freebox darf nur mittels scale Methode geändert werden. In DarkBox koennen auch so Aenderungen gemacht werden.
+//
+//DarkBox mit Repeated<P>, Scaled<P>: Der Inhalt von Repeated/Scaled (das Array) darf nicht veraendert werden. In DarkBox sind Aenderungen jedoch zugelassen. Repeated/Scaled kann weiters unterschiedliche Zeichen darstellen im Gegensatz zu DarkBox (unterschiedliche Ausgabeformate).
+//
+//FreeBox, Repeated<Char> mit Scaled<P> (P ohne FreeBox, Repeated<Char>): Bei einem 1x1 Grid gibt es keine Untertypbeziehung, da mit P keine Untertypbeziehung besteht. Sonst sind die Skalierungseigenschaften unterschiedlich.
+//
+//Repeated<P> mit Scaled<Q>: Die Skalierung erfolgt unterschiedlich (daher unterschiedliche Nachbedingungen).
+
 public class Test {
 	public static void main(String[] args) {
 
@@ -12,7 +46,7 @@ public class Test {
 		System.out.println(dBox1);
 		System.out.println("--- DarkBox ---");
 		System.out.println(dBox2);
-		
+
 		// Ersetzungsprinzip
 		Pict pictdBox3 = new DarkBox(3, 3, '*');
 		System.out.println("--- Pict (DarkBox) - Ersetzungsprinzip ---");
@@ -20,7 +54,7 @@ public class Test {
 
 		System.out.println("+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+");
 		System.out.println();
-		
+
 		// Box testen
 		Box box1 = new Box(5, 3, '-', '#');
 		Box box2 = new Box(1, 4, '@', '?');
@@ -31,15 +65,15 @@ public class Test {
 		System.out.println(box1);
 		System.out.println("--- Box ---");
 		System.out.println(box2);
-		
-		//Ersetzungsprinzip
-		Pict pictBox = new Box(6,3,'G','I');
+
+		// Ersetzungsprinzip
+		Pict pictBox = new Box(6, 3, 'G', 'I');
 		System.out.println("--- Pict (Box) - Ersetzungsprinzip ---");
 		System.out.println(pictBox);
-		
+
 		System.out.println("+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+");
 		System.out.println();
-		
+
 		// ClearBox testen
 		ClearBox cBox1 = new ClearBox(3, 4);
 		System.out.println("--- ClearBox ---");
@@ -47,13 +81,13 @@ public class Test {
 		System.out.println("--- Verhaeltnis von ClearBox ---");
 		System.out.println(cBox1.getRatio());
 
-		Box boxcBox2 = new ClearBox(3,3);
+		Box boxcBox2 = new ClearBox(3, 3);
 		System.out.println("--- Box (ClearBox) - Ersetzungsprinzip ---");
 		System.out.println(boxcBox2);
-		
+
 		System.out.println("+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+");
 		System.out.println();
-		
+
 		// FreeBox testen
 		Character[][] mg = { { 'a', 'b', 'c' }, { 'd', 'e', 'f' } };
 		FreeBox fb = new FreeBox(mg);
@@ -87,7 +121,7 @@ public class Test {
 
 		System.out.println("+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+");
 		System.out.println();
-		
+
 		// Repeated, Scale
 		Pict p00 = new Box(5, 3, '-', '#');
 		Pict p01 = new ClearBox(5, 4);
@@ -110,7 +144,7 @@ public class Test {
 
 		System.out.println("+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+~+");
 		System.out.println();
-		
+
 		grid = new Scaled<Pict>(picts);
 		System.out.println("--- Grid aus Scaled erzeugt ---");
 		System.out.println(grid);

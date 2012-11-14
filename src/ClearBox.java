@@ -12,7 +12,7 @@ public class ClearBox extends Box {
 	/**
 	 * Die beiden zu verwendenden Zeichen (area,bound) werden im Konstruktor gesetzt
 	 * und bleiben danach unveraendert.
-	 * => EinschrŠnkung: Bei der ClearBox ist das Zeichen area immer ' ' und bound immer *
+	 * => Einschraenkung: Bei der ClearBox ist das Zeichen area immer ' ' und bound immer *
 	 * 
 	 * @param width
 	 *            Die Breite der Box

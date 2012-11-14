@@ -88,7 +88,7 @@ public class Box implements Pict {
 			result.append("\n");
 		}
 
-		// Fu§zeile
+		// Fusszeile
 		if (scaledHeight > 1) {
 			for (int i = 0; i < scaledWidth; i++) {
 				result.append(this.bound);

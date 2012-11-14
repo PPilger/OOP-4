@@ -22,7 +22,7 @@
 //
 // Box, ClearBox mit Scaled<P> (P ohne Box, ClearBox): Bei einem 1x1 Grid gibt es keine Untertypbeziehung, da mit P keine Untertypbeziehung besteht. Sonst sind die Skalierungseigenschaften unterschiedlich.
 //
-// DarkBox mit FreeBox: Die Freebox darf nur mittels scale Methode geändert werden. In DarkBox koennen auch so Aenderungen gemacht werden.
+// DarkBox mit FreeBox: Die Freebox darf nur mittels scale Methode geaendert werden. In DarkBox koennen auch so Aenderungen gemacht werden.
 //
 // DarkBox mit Repeated<P>, Scaled<P>: Der Inhalt von Repeated/Scaled (das Array) darf nicht veraendert werden. In DarkBox sind Aenderungen jedoch zugelassen. Repeated/Scaled kann weiters unterschiedliche Zeichen darstellen im Gegensatz zu DarkBox (unterschiedliche Ausgabeformate).
 //
